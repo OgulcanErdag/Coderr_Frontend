@@ -92,9 +92,9 @@ async function updateOfferListFilter() {
     "business_offer_list"
   ).innerHTML = `${getBusinessOfferTemplateList(currentOffers)}
     ${getOfferPagination(
-      calculateNumPages(allOffersLength, PAGE_SIZE),
-      currentBusinessOfferListFilter.page
-    )}`;
+    calculateNumPages(allOffersLength, PAGE_SIZE),
+    currentBusinessOfferListFilter.page
+  )}`;
 }
 
 /**
@@ -112,7 +112,7 @@ async function getFullProfileData() {
 
   let orderResp = await getData(ORDER_URL);
   if (orderResp.ok) {
-    currentOrders = orderResp.data;
+    currentOrders = orderResp.data.results;
   }
 
   await setUsers();
