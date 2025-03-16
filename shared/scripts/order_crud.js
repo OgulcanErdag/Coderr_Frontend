@@ -1,7 +1,7 @@
 let orderStatus = {
     'in_progress': 'In Bearbeitung',
     'completed': 'Abgeschlossen',
-    'cancelled': 'Abgebrochen'
+    'canceled': 'Abgebrochen'
 }
 
 async function createOrder(detailId) {
@@ -13,7 +13,7 @@ async function createOrder(detailId) {
 
         if (!orderResp.ok) {
             showToastMessage(true, extractErrorMessages(orderResp.data))
-        } 
+        }
         return orderResp
     } else {
         showToastMessage(true, ['Das Angebotsdetail konnte nicht gefunden werden'])
