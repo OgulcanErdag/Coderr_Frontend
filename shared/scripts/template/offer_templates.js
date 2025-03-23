@@ -1,4 +1,4 @@
-function getOfferTemplateList(offers){
+function getOfferTemplateList(offers) {
     if (!Array.isArray(offers)) {
         return '<p>Fehler beim Laden der Angebote</p>';
     }
@@ -12,7 +12,7 @@ function getOfferTemplateList(offers){
     return offerList;
 }
 
-function getEmptyOfferListTemplate(){
+function getEmptyOfferListTemplate() {
     return `
         <div class=" d_flex_cc_gl f_d_c w_full">
             <img class="nothing_found_img" src="./assets/img/nothing_found.png" alt="Nothing found image">
@@ -20,37 +20,37 @@ function getEmptyOfferListTemplate(){
         </div>`
 }
 
-function getOfferPagination(currentMax, currentPage){
+function getOfferPagination(currentMax, currentPage) {
     if (typeof currentMax !== 'number' || typeof currentPage !== 'number' || currentMax < 0 || currentPage < 1) {
         return '<p>Fehler bei der Paginierung</p>';
     }
-    if(currentMax == 0){
+    if (currentMax == 0) {
         return ``;
     }
     return `
     <div class="d_flex_cc_gm f_d_r w_full">
-        <button onclick="goToOfferPage(${currentPage - 1})" class="d_flex_cc_gl btn_round_m btn_edit " ${currentPage <= 1 ? 'disabled="disabled"': ""}>
+        <button onclick="goToOfferPage(${currentPage - 1})" class="d_flex_cc_gl btn_round_m btn_edit " ${currentPage <= 1 ? 'disabled="disabled"' : ""}>
             <img class="rotate_half" src="./assets/icons/arrow_right_alt.svg" alt="">
         </button>
         <div class="d_flex_cc_gm" style="width:150px;">
             ${getPaginationNumbers(currentMax, currentPage)}
         </div>
-        <button onclick="goToOfferPage(${currentPage + 1})" class="d_flex_cc_gl btn_round_m btn_edit " ${currentPage >= currentMax ? 'disabled="disabled"': ""}>
+        <button onclick="goToOfferPage(${currentPage + 1})" class="d_flex_cc_gl btn_round_m btn_edit " ${currentPage >= currentMax ? 'disabled="disabled"' : ""}>
             <img  src="./assets/icons/arrow_right_alt.svg" alt="">
         </button>
     </div>`
 }
 
-function getPaginationNumbers(currentMax, currentPage){
+function getPaginationNumbers(currentMax, currentPage) {
     paginationListHTML = "";
     let start = 1;
     let end = 3;
     let endHTML = "";
-    if(currentPage - 2 > 0){
+    if (currentPage - 2 > 0) {
         start = currentPage - 1;
         paginationListHTML = '<p class="ws_nw">...</p>';
     }
-    if(currentPage + 1 < currentMax){
+    if (currentPage + 1 < currentMax) {
         end = currentPage + 1;
         endHTML = '<p class="ws_nw">...</p>';
     } else {
@@ -63,7 +63,7 @@ function getPaginationNumbers(currentMax, currentPage){
 }
 
 
-function getOfferTemplate(offer){
+function getOfferTemplate(offer) {
     if (!offer || typeof offer !== 'object' || !offer.id || !offer.title || !offer.description) {
         return '<p>Fehler beim Laden des Angebots</p>';
     }
@@ -83,13 +83,13 @@ function getOfferTemplate(offer){
 }
 
 
-function getUpdateOrCreateDate(offer){
+function getUpdateOrCreateDate(offer) {
     const time1 = new Date(offer.created_at);
     const time2 = new Date(offer.updated_at);
 
     timeDifference = Math.abs(time2 - time1) / (1000 * 60 * 60)
 
-    if(timeDifference < 1){
+    if (timeDifference < 1) {
         return 'Erstellt: ' + formatToMonthYearAndDay(offer.created_at)
     } else {
         return 'Aktualisiert: ' + formatToMonthYearAndDay(offer.updated_at)

@@ -205,7 +205,7 @@ function getCustomerOrderTemplate(order) {
     !order.status ||
     !order.title ||
     !order.delivery_time_in_days ||
-    // !order.revisions ||
+    !order.revisions ||
     !order.price
   ) {
     return `
