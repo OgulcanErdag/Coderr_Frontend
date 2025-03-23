@@ -112,7 +112,7 @@ async function getFullProfileData() {
 
   let orderResp = await getData(ORDER_URL);
   if (orderResp.ok) {
-    currentOrders = orderResp.data.results;
+    currentOrders = orderResp.data;
   }
 
   await setUsers();
