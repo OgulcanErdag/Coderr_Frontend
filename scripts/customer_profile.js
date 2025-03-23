@@ -14,13 +14,16 @@ let currentCustomerUser;
 async function initCProfile() {
   let response = await setCurrentUser();
   setHeader();
+
   if (!response.ok) {
     window.location.href = "./login.html";
   } else {
     await loadCustomerUser();
+    await setUsers();
+
     document.getElementById("customer_detail_section").innerHTML =
       getCustomerDetailTemplate();
-    await setUsers();
+
     await loadRenderCustomerReviews();
   }
 }
